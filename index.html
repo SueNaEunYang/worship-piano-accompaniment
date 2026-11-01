@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>샘물 — 워십 피아노 반주</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <p class="eyebrow">WORSHIP PIANO ACCOMPANIMENT</p>
+        <h1>샘물</h1>
+        <p class="intro">코드 진행과 분위기를 고르면, 처음부터 끝까지 이어지는 피아노 반주를 만듭니다.</p>
+      </header>
+
+      <section class="card" aria-labelledby="song-settings">
+        <h2 id="song-settings">곡 설정</h2>
+        <label for="progression">코드 진행</label>
+        <textarea id="progression" rows="4" spellcheck="false" aria-describedby="chord-help">G | D/F# | Em7 | C</textarea>
+        <p id="chord-help" class="help">마디는 <kbd>|</kbd>로 나눕니다. 예: <code>G | D/F# | Em7 | C</code> · 한 마디에 코드 하나</p>
+
+        <div class="chord-editor" aria-label="마우스 코드 편집기">
+          <div class="editor-heading"><strong>마우스로 코드 편집</strong><span id="editor-mode">새 마디 추가</span></div>
+          <div id="measure-list" class="measure-list" aria-live="polite"></div>
+          <p class="picker-label">근음</p>
+          <div id="root-picker" class="picker" role="group" aria-label="근음 선택">
+            <button type="button" data-root="C">C</button><button type="button" data-root="D">D</button><button type="button" data-root="E">E</button><button type="button" data-root="F">F</button><button type="button" data-root="G">G</button><button type="button" data-root="A">A</button><button type="button" data-root="B">B</button>
+          </div>
+          <p class="picker-label">코드 종류</p>
+          <div id="quality-picker" class="picker qualities" role="group" aria-label="코드 종류 선택">
+            <button type="button" data-quality="">장조</button><button type="button" data-quality="m">단조</button><button type="button" data-quality="7">7</button><button type="button" data-quality="maj7">maj7</button><button type="button" data-quality="m7">m7</button><button type="button" data-quality="sus4">sus4</button><button type="button" data-quality="add9">add9</button>
+          </div>
+          <div class="editor-actions"><span id="picked-chord" aria-live="polite">G</span><button id="apply-chord" type="button" class="small-button">마디 추가</button><button id="cancel-edit" type="button" class="text-button" hidden>선택 해제</button></div>
+          <p class="help">마디를 누르면 교체할 수 있고, ×를 누르면 삭제합니다. 세밀한 코드(예: D/F#)는 위 텍스트에서 직접 입력할 수 있습니다.</p>
+        </div>
+
+        <div class="controls">
+          <label for="tempo">템포 <output id="tempo-value" for="tempo">72 BPM</output>
+            <input id="tempo" type="range" min="45" max="130" value="72" />
+          </label>
+          <label for="mood">분위기
+            <select id="mood">
+              <option value="flow">은혜로운 워십</option>
+              <option value="prayer">잔잔한 기도</option>
+              <option value="praise">밝은 찬양</option>
+            </select>
+          </label>
+        </div>
+        <div class="structure-options" role="group" aria-label="곡 구조 선택">
+          <label><input id="include-intro" type="checkbox" checked /> 인트로 추가</label>
+          <label><input id="include-outro" type="checkbox" checked /> 아웃트로 추가</label>
+        </div>
+      </section>
+
+      <section class="card actions" aria-label="반주 만들기">
+        <div>
+          <p class="eyebrow">PREVIEW & EXPORT</p>
+          <p id="summary" class="summary" aria-live="polite">4마디 · 약 16초 · 인트로와 엔딩 포함</p>
+        </div>
+        <div class="buttons">
+          <button id="play" type="button">▶ 미리 듣기</button>
+          <button id="download" type="button" class="secondary">WAV 저장</button>
+        </div>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section class="note">
+        <h2>만드는 방식</h2>
+        <p>입력한 진행의 첫 코드는 인트로에, 마지막 코드는 엔딩에 사용됩니다. 오른손 화음은 앞 화음에서 가장 적게 움직이는 자리로 이어집니다. 모든 처리는 이 브라우저 안에서만 이루어지며 입력이나 음원은 서버로 전송되지 않습니다.</p>
+        <p class="credit">피아노 음원: Salamander Grand Piano — Alexander Holm, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
