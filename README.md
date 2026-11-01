@@ -2,10 +2,12 @@
 
 코드 진행·템포·분위기를 고르면 브라우저 안에서 피아노 반주를 만들어 미리 듣고 WAV로 저장하는 정적 웹 앱입니다. 서버·로그인·저장 기능은 없습니다.
 
+바로 쓰기: https://suenaeunyang.github.io/worship-piano-accompaniment/
+
 ## 다른 컴퓨터에서 작업하기
 
 ```bash
-git clone https://github.com/<계정>/worship-piano-accompaniment.git
+git clone https://github.com/SueNaEunYang/worship-piano-accompaniment.git
 cd worship-piano-accompaniment
 ```
 
