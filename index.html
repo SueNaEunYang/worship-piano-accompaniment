@@ -17,8 +17,12 @@
       <section class="card" aria-labelledby="song-settings">
         <h2 id="song-settings">곡 설정</h2>
         <label for="progression">코드 진행</label>
-        <textarea id="progression" rows="4" spellcheck="false" aria-describedby="chord-help">G | D/F# | Em7 | C</textarea>
-        <p id="chord-help" class="help">마디는 <kbd>|</kbd>로 나눕니다. 예: <code>G | D/F# | Em7 | C</code> · 한 마디에 코드 하나</p>
+        <textarea id="progression" rows="4" spellcheck="false" aria-describedby="chord-help">[절] G | D/F# | Em7 | C
+[후렴] C D/F# | G | Em7 D | C</textarea>
+        <p id="chord-help" class="help">마디는 <kbd>|</kbd>나 줄바꿈으로 나눕니다. 한 마디에 코드 두 개는 띄어 씁니다(<code>C D/F#</code>). <code>%</code>는 앞 마디 반복. <code>[절]</code>은 여리게, <code>[후렴]</code>은 크게 치고, 절에서 후렴으로 넘어갈 때 쌓아 올립니다.</p>
+        <div class="transpose" role="group" aria-label="조옮김">
+          <button id="transpose-down" type="button" class="small-button secondary">♭ 반음 내리기</button><button id="transpose-up" type="button" class="small-button secondary">♯ 반음 올리기</button><span id="current-key" aria-live="polite"></span>
+        </div>
 
         <div class="chord-editor" aria-label="마우스 코드 편집기">
           <div class="editor-heading"><strong>마우스로 코드 편집</strong><span id="editor-mode">새 마디 추가</span></div>
@@ -30,6 +34,10 @@
           <p class="picker-label">코드 종류</p>
           <div id="quality-picker" class="picker qualities" role="group" aria-label="코드 종류 선택">
             <button type="button" data-quality="">장조</button><button type="button" data-quality="m">단조</button><button type="button" data-quality="7">7</button><button type="button" data-quality="maj7">maj7</button><button type="button" data-quality="m7">m7</button><button type="button" data-quality="sus4">sus4</button><button type="button" data-quality="add9">add9</button>
+          </div>
+          <p class="picker-label">구간 시작 (다음에 추가할 마디부터)</p>
+          <div id="section-picker" class="picker qualities" role="group" aria-label="구간 선택">
+            <button type="button" data-section="절">절</button><button type="button" data-section="후렴">후렴</button><button type="button" data-section="브릿지">브릿지</button>
           </div>
           <div class="editor-actions"><span id="picked-chord" aria-live="polite">G</span><button id="apply-chord" type="button" class="small-button">마디 추가</button><button id="cancel-edit" type="button" class="text-button" hidden>선택 해제</button></div>
           <p class="help">마디를 누르면 교체할 수 있고, ×를 누르면 삭제합니다. 세밀한 코드(예: D/F#)는 위 텍스트에서 직접 입력할 수 있습니다.</p>
@@ -46,8 +54,16 @@
               <option value="praise">밝은 찬양</option>
             </select>
           </label>
+          <label for="meter">박자
+            <select id="meter">
+              <option value="4/4">4/4</option>
+              <option value="3/4">3/4</option>
+              <option value="6/8">6/8 (템포는 점4분음표 기준)</option>
+            </select>
+          </label>
         </div>
         <div class="structure-options" role="group" aria-label="곡 구조 선택">
+          <label><input id="count-in" type="checkbox" /> 카운트인 (시작 전 한 마디 딸깍)</label>
           <label><input id="include-intro" type="checkbox" checked /> 인트로 추가</label>
           <label><input id="include-outro" type="checkbox" checked /> 아웃트로 추가</label>
         </div>
